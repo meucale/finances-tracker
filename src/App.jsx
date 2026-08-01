@@ -1,47 +1,38 @@
 import { useState } from 'react';
 import TransactionForm from './components/TransactionForm';
+import TransactionList from './components/TransactionList';
 
 const MOCK_TRANSACTIONS = [
   { id: 1, name: 'Netflix', amount: 12.99, category: 'Intrattenimento' },
   // ...
 ];
 
+
 function App() {
 
+  // L'UNICA fonte di verità delle spese vive qui nel Padre!
   const [transactions, setTransactions] = useState(MOCK_TRANSACTIONS);
 
+  // 1. Funzione per aggiungere
   const handleAddTransaction = (newTransaction) => {
     setTransactions([...transactions, newTransaction]);
-  }; 
+  };
 
-  const totalAmount = transactions.reduce((acc, item) => acc + item.amount, 0);
-
-  const handleDelete = (idToDelete) => {
-  // Usa .filter() per tenere solo gli elementi con id DIVERSO da idToDelete!
-  const updatedTransactions = transactions.filter(item => item.id !== idToDelete);
-  setTransactions(updatedTransactions);
+  // 2. Funzione per eliminare
+  const handleDeleteTransaction = (idToDelete) => {
+    setTransactions(transactions.filter((item) => item.id !== idToDelete));
   };
 
   return ( 
     <div>
 
       <TransactionForm onAddTransaction={handleAddTransaction} />
-      
-      <ul>
 
-        {transactions.map((item) => (
-          <li key={item.id}>
-            {item.name} - {item.amount} - {item.category}
-
-            <button onClick={() => handleDelete(item.id)}>x</button>
-          </li> 
-        ))}
-      </ul>
-
-      <h2>
-        Total Amount: ${totalAmount}
-      </h2>
-
+      {/* La Lista riceve i dati da App e dice ad App: "Elimina questa spesa!" */}
+      <TransactionList 
+        transactions={transactions} 
+        onDelete={handleDeleteTransaction} 
+      />
 
     </div>
   )
