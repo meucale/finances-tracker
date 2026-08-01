@@ -3,7 +3,7 @@ import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
 
 const MOCK_TRANSACTIONS = [
-  { id: 1, name: 'Netflix', amount: 12.99, category: 'Intrattenimento' },
+  { id: 1, name: 'Netflix', amount: 12.99, category: 'Intrattenimento', type: 'singola'},
   // ...
 ];
 
