@@ -1,16 +1,38 @@
+import { useState } from "react";
+
 function TransactionList({ transactions, onDelete }) {
-  // Il totale lo calcoliamo direttamente sulle spese che arrivano come Prop dal Padre
-  const totalAmount = transactions.reduce((acc, item) => acc + item.amount, 0);
-  const subscriptionTotal = transactions.filter(item => item.type === 'ricorrente').reduce((acc, item) => acc + item.amount, 0);
-  const singleExpenseTotal = transactions.filter(item => item.type === 'singola').reduce((acc, item) => acc + item.amount, 0);
-  return (
+
+  // 1. Stato del filtro (DENTRO la funzione)
+  const [filterCategory, setFilterCategory] = useState('tutte');
+
+  // 2. Array di transazioni visibili (filtrate)
+  const visibleTransactions = filterCategory === 'tutte' 
+    ? transactions 
+    : transactions.filter(item => item.category === filterCategory);
+
+    // 3. Calcoli basati sulle transazioni VISIBILI
+  const totalAmount = visibleTransactions.reduce((acc, item) => acc + item.amount, 0);
+  const subscriptionTotal = visibleTransactions.filter(item => item.type === 'ricorrente').reduce((acc, item) => acc + item.amount, 0);
+  const singleExpenseTotal = visibleTransactions.filter(item => item.type === 'singola').reduce((acc, item) => acc + item.amount, 0);
+  
+    return (
     <div>
+      {/* Menu a tendina per cambiare il filtro */}
+      <div>
+        <label>Filtra per categoria: </label>
+        <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
+          <option value="tutte">Tutte le categorie</option>
+          <option value="Cibo">Cibo</option>
+          <option value="Casa">Casa</option>
+          <option value="Intrattenimento">Intrattenimento</option>
+        </select>
+      </div>
+
       <ul>
-        {transactions.map((item) => (
+        {/* Usiamo visibleTransactions per stampare la lista */}
+        {visibleTransactions.map((item) => (
           <li key={item.id}>
-            {item.name} - {item.amount} - {item.category} - {item.type === 'ricorrente' ? '🔄 Abbonamento' : '💳 Spesa'}
-            
-            {/* Quando clicchi, dici semplicemente al Padre di eliminare questo ID */}
+            {item.name} - €{item.amount} - <strong>{item.category}</strong> - {item.type === 'ricorrente' ? '🔄 Abbonamento' : '💳 Spesa'}
             <button onClick={() => onDelete(item.id)}>x</button>
           </li> 
         ))}

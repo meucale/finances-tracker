@@ -4,6 +4,7 @@ import { useState } from 'react';
 function TransactionForm({ onAddTransaction }) {
   const [nameInput, setNameInput] = useState('');
   const [amountInput, setAmountInput] = useState('');
+  const [categoryInput, setCategoryInput] = useState('Cibo')
   const [typeInput, setTypeInput] = useState('singola');
 
   const handleSubmit = (e) => {
@@ -14,7 +15,7 @@ function TransactionForm({ onAddTransaction }) {
       id: Date.now(),
       name: nameInput,
       amount: Number(amountInput),
-      category: 'Generale',
+      category: categoryInput,
       type: typeInput
     };
 
@@ -43,9 +44,15 @@ function TransactionForm({ onAddTransaction }) {
         onChange={(e) => setAmountInput(e.target.value)} 
       />
 
+      <select value={categoryInput} onChange={(e) => setCategoryInput(e.target.value)}>
+        <option value="Cibo">Cibo</option>
+        <option value="Casa">Casa</option>
+        <option value="Intrattenimento">Intrattenimento</option>
+      </select>
+
       <select value={typeInput} onChange={(e) => setTypeInput(e.target.value)}>
-        <option value="singola"> Spesa Singola </option>
-        <option value="ricorrente"> Abbonamento </option>
+        <option value="singola">Spesa Singola</option>
+        <option value="ricorrente">Abbonamento</option>
       </select>
 
       <button type="submit">Aggiungi</button>
