@@ -15,8 +15,12 @@ function TransactionList({ transactions, onDelete }) {
           </li> 
         ))}
       </ul>
-
-      <h2>Total Amount: ${totalAmount}</h2>
+      
+      <div className="summary">
+        <p>🔄 Totale Abbonamenti: €{subscriptionTotal}</p>
+        <p>💳 Totale Spese Singole: €{singleExpenseTotal}</p>
+        <h2>💰 Totale Complessivo: €{totalAmount}</h2>
+      </div>
     </div>
   );
 }

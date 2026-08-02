@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
 
@@ -10,8 +10,18 @@ const MOCK_TRANSACTIONS = [
 
 function App() {
 
-  // L'UNICA fonte di verità delle spese vive qui nel Padre!
-  const [transactions, setTransactions] = useState(MOCK_TRANSACTIONS);
+  const [transactions, setTransactions] = useState(() => {
+  const saved = localStorage.getItem('transactions');
+  if (saved) {
+    return JSON.parse(saved); // Se esistono spese salvate, usa quelle!
+  }
+  return MOCK_TRANSACTIONS; // Altrimenti usa i dati di prova
+});
+
+// 💾 SALVATAGGIO AUTOMATICO: Ogni volta che "transactions" cambia, salviamo su localStorage
+  useEffect(() => {
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+  }, [transactions]);
 
   // 1. Funzione per aggiungere
   const handleAddTransaction = (newTransaction) => {
