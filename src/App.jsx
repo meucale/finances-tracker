@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import TransactionForm from './components/TransactionForm';
 import TransactionList from './components/TransactionList';
+import ExpenseChart from './components/ExpenseChart';
 
 const MOCK_TRANSACTIONS = [
   { id: 1, name: 'Netflix', amount: 12.99, category: 'Intrattenimento', type: 'singola'},
@@ -42,6 +43,10 @@ function App() {
       <TransactionList 
         transactions={transactions} 
         onDelete={handleDeleteTransaction} 
+      />
+
+      <ExpenseChart
+        transactions={transactions}
       />
 
     </div>
