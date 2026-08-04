@@ -28,10 +28,10 @@ function TransactionList({ transactions, onDelete }) {
         </select>
       </div>
 
-      <ul>
+      <ul className="transaction-list">
         {/* Usiamo visibleTransactions per stampare la lista */}
         {visibleTransactions.map((item) => (
-          <li key={item.id}>
+          <li className="transaction-item" key={item.id}>
             {item.name} - €{item.amount} - <strong>{item.category}</strong> - {item.type === 'ricorrente' ? '🔄 Abbonamento' : '💳 Spesa'}
             <button onClick={() => onDelete(item.id)}>x</button>
           </li> 

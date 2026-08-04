@@ -129,3 +129,45 @@ code {
   padding: 20px;
   box-shadow: var(--shadow);
 }
+
+.form-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permette agli elementi di andare a capo su schermi piccoli */
+  gap: 12px;
+  align-items: center;
+}
+
+.form-grid input,
+.form-grid select {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg);
+  color: var(--text-h);
+  font-size: 15px;
+}
+
+.form-grid button {
+  padding: 10px 20px;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.transaction-list {
+  list-style: none;
+  padding: 0;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}

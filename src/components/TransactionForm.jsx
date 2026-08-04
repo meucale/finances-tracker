@@ -28,35 +28,37 @@ function TransactionForm({ onAddTransaction }) {
   };
 
   return (
+  
+    <section>
+      <form className='form-grid' onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          placeholder="Nome Spesa (es. Spotify)" 
+          value={nameInput} 
+          onChange={(e) => setNameInput(e.target.value)} 
+        />
 
-    <form onSubmit={handleSubmit}>
-      <input 
-        type="text" 
-        placeholder="Nome Spesa (es. Spotify)" 
-        value={nameInput} 
-        onChange={(e) => setNameInput(e.target.value)} 
-      />
+        <input 
+          type="number" 
+          placeholder="Importo (es. 9.99)" 
+          value={amountInput} 
+          onChange={(e) => setAmountInput(e.target.value)} 
+        />
 
-      <input 
-        type="number" 
-        placeholder="Importo (es. 9.99)" 
-        value={amountInput} 
-        onChange={(e) => setAmountInput(e.target.value)} 
-      />
+        <select value={categoryInput} onChange={(e) => setCategoryInput(e.target.value)}>
+          <option value="Cibo">Cibo</option>
+          <option value="Casa">Casa</option>
+          <option value="Intrattenimento">Intrattenimento</option>
+        </select>
 
-      <select value={categoryInput} onChange={(e) => setCategoryInput(e.target.value)}>
-        <option value="Cibo">Cibo</option>
-        <option value="Casa">Casa</option>
-        <option value="Intrattenimento">Intrattenimento</option>
-      </select>
+        <select value={typeInput} onChange={(e) => setTypeInput(e.target.value)}>
+          <option value="singola">Spesa Singola</option>
+          <option value="ricorrente">Abbonamento</option>
+        </select>
 
-      <select value={typeInput} onChange={(e) => setTypeInput(e.target.value)}>
-        <option value="singola">Spesa Singola</option>
-        <option value="ricorrente">Abbonamento</option>
-      </select>
-
-      <button type="submit">Aggiungi</button>
-    </form>
+        <button type="submit">Aggiungi</button>
+      </form>
+    </section>
   );
 }
 
