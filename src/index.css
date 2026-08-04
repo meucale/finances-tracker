@@ -171,3 +171,19 @@ code {
   border-radius: 8px;
   margin-bottom: 8px;
 }
+
+.delete-btn {
+  background-color: rgba(239, 68, 68, 0.15); /* Rosso soft */
+  color: #ef4444;                             /* Testo rosso */
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #ef4444; /* Diventa rosso pieno quando ci passi sopra */
+  color: #ffffff;            /* Il testo diventa bianco */
+}

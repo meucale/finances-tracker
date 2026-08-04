@@ -33,7 +33,8 @@ function TransactionList({ transactions, onDelete }) {
         {visibleTransactions.map((item) => (
           <li className="transaction-item" key={item.id}>
             {item.name} - €{item.amount} - <strong>{item.category}</strong> - {item.type === 'ricorrente' ? '🔄 Abbonamento' : '💳 Spesa'}
-            <button onClick={() => onDelete(item.id)}>x</button>
+            
+            <button className="delete-btn" onClick={() => onDelete(item.id)}>x</button>
           </li> 
         ))}
       </ul>
