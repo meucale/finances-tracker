@@ -34,23 +34,29 @@ function App() {
     setTransactions(transactions.filter((item) => item.id !== idToDelete));
   };
 
-  return ( 
-    <div>
+return ( 
+  <div className="app-container">
+    <h1>💼 Finance Dashboard</h1>
 
+    {/* Card 1: Form per inserire nuova spesa */}
+    <section className="card">
       <TransactionForm onAddTransaction={handleAddTransaction} />
+    </section>
 
-      {/* La Lista riceve i dati da App e dice ad App: "Elimina questa spesa!" */}
+    {/* Card 2: Grafico a torta delle spese */}
+    <section className="card">
+      <ExpenseChart transactions={transactions} />
+    </section>
+
+    {/* Card 3: Lista, Filtri e Totali */}
+    <section className="card">
       <TransactionList 
         transactions={transactions} 
         onDelete={handleDeleteTransaction} 
       />
-
-      <ExpenseChart
-        transactions={transactions}
-      />
-
-    </div>
-  )
+    </section>
+  </div>
+);
 }
 
 export default App

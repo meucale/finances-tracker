@@ -109,3 +109,22 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+
+
+/* PERSONAL CSS */
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background-color: #1e293b;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: inset;
+}
